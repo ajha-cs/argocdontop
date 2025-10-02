@@ -1,0 +1,8 @@
+# Application Configuration
+app:
+  name: "orgcs-imogen"
+  environment: "development"
+  version: "1.0.0"
+
+# Deployment Configuration
+replicaCount: 1
