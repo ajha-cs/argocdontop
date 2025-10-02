@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: orgcs-imogen  
+  namespace: argocd
+spec:
+  destination:
+    namespace: imogen  
+    server: https://kubernetes.default.svc  
+  project: default
+  sources:
+  - chart: orgcs-imogen 
+    helm:
+      valueFiles:
+      - $values/helm/values.yaml  
+    repoURL: oci://helm.oci.cloudsmith.io/orgcs/helmrepo 
+    targetRevision: 0.0.695  
+  - ref: values
+    repoURL: https://github.com/ajha-cs/argocdontop.git
+    targetRevision: main  
+  syncPolicy:
+    automated:
+      prune: true  
